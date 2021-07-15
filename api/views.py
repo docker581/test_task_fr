@@ -12,11 +12,11 @@ from datetime import date
 def get_session_id(request):
     if not request.session.session_key:
         request.session.save()
-    session_key = request.session.session_key # getting session_key
+    session_key = request.session.session_key  # getting session_key
     session_id = int.from_bytes(
-        session_key.encode('utf-8'), 
+        session_key.encode('utf-8'),
         byteorder='big',
-    ) # encoding
+    )  # encoding
     return session_id
 
 
@@ -25,8 +25,8 @@ class PollModelViewSet(ModelViewSet):
     serializer_class = PollSerializer
 
     def get_queryset(self):
-        today = date.today()  
-        queryset = Poll.objects.filter(date_end__gte=today) # active polls
+        today = date.today()
+        queryset = Poll.objects.filter(date_end__gte=today)  # active polls
         return queryset
 
     def perform_create(self, serializer):

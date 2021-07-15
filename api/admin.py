@@ -4,10 +4,10 @@ from .models import Poll, Question
 
 
 class PollAdmin(admin.ModelAdmin):
-    list_display = [ 
-        'name', 
-        'description', 
-        'date_start', 
+    list_display = [
+        'name',
+        'description',
+        'date_start',
         'date_end',
         'id',
     ]

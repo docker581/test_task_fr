@@ -21,6 +21,16 @@ https://docs.docker.com/engine/install/
 git clone https://github.com/docker581/test_task_fr
 ```
 
+### Пример файла .env
+```bash
+DB_ENGINE=django.db.backends.postgresql 
+DB_NAME=postgres 
+POSTGRES_USER=postgres 
+POSTGRES_PASSWORD=postgres
+DB_HOST=db 
+DB_PORT=5432
+```
+
 ### Запуск приложения
 ```bash
 docker-compose up -d
@@ -33,3 +43,7 @@ docker-compose exec web python manage.py migrate --noinput
 ```bash
 docker-compose exec web python manage.py createsuperuser
 ```
+
+## Документация по API
+- localhost/polls/ - работа с опросами
+- localhost/polls/<poll_id>/questions/ - работа с вопросами
