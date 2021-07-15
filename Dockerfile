@@ -1,4 +1,4 @@
-FROM python:2.2.10
+FROM python:2.2
 
 WORKDIR /code
 
