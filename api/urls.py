@@ -9,7 +9,7 @@ from .views import (
 
 router = DefaultRouter()
 router.register(
-    r'polls/(?P<post_id>\d+)/questions',
+    r'polls/(?P<poll_id>\d+)/questions',
     QuestionModelViewSet,
     basename='questions',
  )
