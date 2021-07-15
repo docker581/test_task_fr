@@ -8,16 +8,14 @@ class Poll(models.Model):
     )
     description = models.TextField(verbose_name='Описание')
     date_start = models.DateField(
+        auto_now_add=True,
         editable=False,
         verbose_name='Дата начала',
     )
     date_end = models.DateField(verbose_name='Дата окончания')
-    slug = models.SlugField(
-        unique=True,
-        verbose_name='URL имя',
-    )
     session_id = models.CharField(
         max_length=100,
+        blank=True,
         verbose_name='ID сессии',
     )
 
@@ -25,17 +23,16 @@ class Poll(models.Model):
         verbose_name = 'Опрос'
         verbose_name_plural = 'Опросы'
 
-    def str(self):
+    def __str__(self):
         return self.name
 
 
-class TypeChoices(models.TextChoices):
-    TEXT = 'текст', 'text'
-    OPTION = 'один вариант', 'one option'
-    OPTIONS = 'несколько вариантов', 'several_options'
-
-
 class Question(models.Model):
+    TYPES = (
+        ('текст', 'Ответ текстом'),
+        ('один вариант', 'Один вариант ответа'),
+        ('несколько вариантов', 'Несколько вариантов ответа'),
+    )
     poll = models.ForeignKey(
         Poll,
         on_delete=models.CASCADE,
@@ -48,7 +45,7 @@ class Question(models.Model):
     )
     type = models.TextField(
         max_length=100,
-        choices=TypeChoices.choices,
+        choices=TYPES,
         verbose_name='Тип вопроса',
     )
 

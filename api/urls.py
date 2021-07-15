@@ -1,26 +1,20 @@
-from django.urls import path
+from django.urls import include, path
 
-from . import views
+from rest_framework.routers import DefaultRouter
+
+from .views import (
+    PollModelViewSet,
+    QuestionModelViewSet,
+)
+
+router = DefaultRouter()
+router.register(
+    r'polls/(?P<post_id>\d+)/questions', 
+    QuestionModelViewSet, 
+    basename='questions',
+ )
+router.register(r'polls', PollModelViewSet, basename='polls')
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', include(router.urls)),
 ]
-# from django.urls import include, path
-
-# from rest_framework.routers import DefaultRouter
-
-# from .views import (
-
-# )
-
-# router = DefaultRouter()
-# router.register(
-
-# )
-
-# urlpatterns = [
-#     path('', include(router.urls)),
-# ]
-# urlpatterns += [
-
-# ]
